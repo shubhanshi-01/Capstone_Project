@@ -119,7 +119,7 @@ This project is an AI-powered email response generator that analyzes the sentime
 ## Contact
 
 For any queries, feel free to reach out at -
--   **Vaani Goyal** at **vanu.goyal@gmail.com**
--   **Vaishika Agrawal** at **agrawalvaishka5@gmail.com**.
--   **Shubhanshi** at **shubhanshibishnoi364@gmail.com**.
--   **Tanay Chajjed** at **tanay@gmail.com**.
+-   **Vaani Goyal**(2201AI41) at **vanu.goyal@gmail.com**
+-   **Vaishika Agrawal**(2201AI42) at **agrawalvaishka5@gmail.com**.
+-   **Shubhanshi**(2201AI53) at **shubhanshibishnoi364@gmail.com**.
+-   **Tanay Chhajed**(2201AI39) at **tanaychhajed@gmail.com**.
