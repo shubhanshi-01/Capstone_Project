@@ -1,4 +1,5 @@
 // Backend (Express Server)
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const bodyParser = require("body-parser");
@@ -11,9 +12,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // OpenAI API Configuration
-const OPENAI_API_URL =
-    "https://ai-aihackthonhub282549186415.openai.azure.com/openai/deployments/gpt-4/chat/completions?api-version=2025-01-01-preview";
-const OPENAI_API_KEY = "Fj1KPt7grC6bAkNja7daZUstpP8wZTXsV6Zjr2FOxkO7wsBQ5SzQJQQJ99BCACHYHv6XJ3w3AAAAACOGL3Xg";
+const OPENAI_API_URL = process.env.API_URL;
+const OPENAI_API_KEY = process.env.API_KEY;
 
 // Function to generate email response
 async function generateResponse(emailText) {
