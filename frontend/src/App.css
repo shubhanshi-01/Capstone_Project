@@ -50,8 +50,8 @@ body{
 .user {
   align-self: flex-end;
   flex-direction: row-reverse;
-  background: #007bff;
-  color: white;
+  background: #ddd;
+  color: black;
   max-width: 550px;
   margin-left: -200px;
 }
@@ -78,8 +78,7 @@ body{
 }
 
 .user .message {
-  background-color: #4caf50;
-  color: white;
+  background-color: #e0e0e0;
 }
 /* Start & Contact buttons */
 .option-button {

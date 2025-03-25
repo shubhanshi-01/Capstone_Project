@@ -1,28 +1,28 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./app.css";
-import botImage from "./assets/images/images.png";
-import userImage from "./assets/images/Group.png";
+import botImage from "./assets/bot_icon.png";
+import userImage from "./assets/user_icon.png";
 
 function App() {
-    // const botImage = "D:\Capstone\Capstone_Project\frontend\IMG_20221026_182722_159.jpg"; 
-    // const userImage = "D:\Capstone\Capstone_Project\frontend\IMG_20221026_182722_221.jpg";
     const [messages, setMessages] = useState([
-        { text: "Welcome! Choose an option:", sender: "bot", type: "text" },
-        { text: "Start", sender: "bot", type: "button", action: "Start" },
-        { text: "Contact Us", sender: "bot", type: "button", action: "Contact Us" }
+        { 
+            text: "Welcome! Choose an option:", 
+            sender: "bot", 
+            type: "buttons", 
+            options: ["Start", "Contact Us"] 
+        }
     ]);
     const [emailText, setEmailText] = useState("");
     const [currentCondition, setCurrentCondition] = useState("welcome");
 
     const chatBoxRef = useRef(null);
 
-    const addMessage = (text, sender, type = "text", action = null) => {
-        setMessages((prevMessages) => [...prevMessages, { text, sender, type, action }]);
+    const addMessage = (message) => {
+        setMessages((prevMessages) => [...prevMessages, message]);
     };
 
     useEffect(() => {
-        // Scrolls smoothly to the last message
         if (chatBoxRef.current) {
             chatBoxRef.current.scrollTo({
                 top: chatBoxRef.current.scrollHeight,
@@ -32,70 +32,68 @@ function App() {
     }, [messages]);
 
     const resetToWelcome = () => {
-        addMessage("Welcome! Choose an option:", "bot");
-        addMessage("Start", "bot", "button", "Start");
-        addMessage("Contact Us", "bot", "button", "Contact Us");
+        addMessage({ 
+            text: "Welcome! Choose an option:", 
+            sender: "bot", 
+            type: "buttons", 
+            options: ["Start", "Contact Us"] 
+        });
         setCurrentCondition("welcome");
     };
 
     const handleOptionClick = (option) => {
-        addMessage(option, "user");
+        addMessage({ text: option, sender: "user", type: "text" });
 
         if (option === "Start") {
-            addMessage("Please enter your prompt.", "bot");
+            addMessage({ text: "Please enter your prompt.", sender: "bot", type: "text" });
             setCurrentCondition("enterResponse");
         } else if (option === "Contact Us") {
             setTimeout(() => {
-                addMessage("You can contact us at support@example.com.", "bot");
-
-                setTimeout(() => {
-                    resetToWelcome();
-                }, 5000);
+                addMessage({ text: "You can contact us at support@example.com.", sender: "bot", type: "text" });
+                setTimeout(resetToWelcome, 5000);
             }, 500);
         }
     };
 
     const handleSend = async () => {
         if (!emailText.trim()) return;
-        addMessage(emailText, "user");
+        addMessage({ text: emailText, sender: "user", type: "text" });
 
         if (currentCondition === "enterResponse") {
             try {
-                const res = await axios.post("http://localhost:5000/process-email", {
-                    emailText,
-                });
-                addMessage(res.data.response, "bot");
+                const res = await axios.post("http://localhost:5000/process-email", { emailText });
+                addMessage({ text: res.data.response, sender: "bot", type: "text" });
             } catch (error) {
-                addMessage("Error: Unable to connect to backend.", "bot");
+                addMessage({ text: "Error: Unable to connect to backend.", sender: "bot", type: "text" });
             }
         } else {
-            addMessage("Invalid User Response", "bot");
+            addMessage({ text: "Invalid User Response", sender: "bot", type: "text" });
         }
         setEmailText("");
-
-        setTimeout(() => {
-            resetToWelcome();
-        }, 5000);
+        setTimeout(resetToWelcome, 5000);
     };
 
     return (
         <div>
-            <div className="heading">
-                Automated Email Response Generator
-            </div>
+            <div className="heading">Automated Email Response Generator</div>
             <div className="chat-box" ref={chatBoxRef} style={{ overflowY: "auto", maxHeight: "500px" }}>
                 {messages.map((msg, index) => (
                     <div key={index} className={`message-container ${msg.sender}`}>
                         <img src={msg.sender === "bot" ? botImage : userImage} alt={`${msg.sender} avatar`} className="avatar" />
                         <div className={`message ${msg.sender}`}>
-                        {msg.type === "button" ? (
-                            <button className="option-button" onClick={() => handleOptionClick(msg.action)}>
-                                {msg.text}
-                            </button>
-                        ) : (
-                            msg.text
-                        )}
-                    </div>
+                            {msg.type === "buttons" ? (
+                                <>
+                                    <p>{msg.text}</p>
+                                    {msg.options.map((option, idx) => (
+                                        <button key={idx} className="option-button" onClick={() => handleOptionClick(option)}>
+                                            {option}
+                                        </button>
+                                    ))}
+                                </>
+                            ) : (
+                                msg.text
+                            )}
+                        </div>
                     </div>
                 ))}
             </div>
