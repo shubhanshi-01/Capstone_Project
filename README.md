@@ -4,6 +4,10 @@
 
 This project is an AI-powered email response generator that analyzes the sentiment of an email and provides an appropriate response using OpenAI's GPT-4 via Azure OpenAI API. The system consists of a backend server built with Node.js and Express, a React-based frontend, and a browser extension popup for quick access.
 
+## Technical Documentation
+[Document]([https://example.com](https://docs.google.com/document/d/1H__Dp3fwbTU9LeDeGhmIf5Tapdk9dXVQXwoQUKFeny8/edit?usp=sharing))
+
+
 ## Features
 
 -   AI-powered sentiment analysis and response generation
