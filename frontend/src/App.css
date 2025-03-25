@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 350%;
+  width: 300%;
   margin: auto;
   background: #f9f9f9;
   border-radius: 10px;
@@ -40,6 +40,8 @@
   align-self: flex-start;
   background: #ddd;
   color: black;
+  max-width: 500px;
+  padding-right: -1000px;
 }
 
 /* User messages on the right */
@@ -47,6 +49,7 @@
   align-self: flex-end;
   background: #007bff;
   color: white;
+  margin-left: -500px;
 }
 
 /* Button container for Start & Contact */
@@ -82,6 +85,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
 .textbox1 {
