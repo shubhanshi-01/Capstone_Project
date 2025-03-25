@@ -101,7 +101,6 @@ This project is an AI-powered email response generator that analyzes the sentime
 
 ```json
 {
-    "sentiment": "negative",
     "response": "We're sorry for the inconvenience. How can we assist you further?"
 }
 ```
