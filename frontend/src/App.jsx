@@ -75,7 +75,10 @@ function App() {
     };
 
     return (
-        <div className="chat-container">
+        <div>
+            <div className="heading">
+                Automated Email Response Generator
+            </div>
             <div className="chat-box" ref={chatBoxRef} style={{ overflowY: "auto", maxHeight: "400px" }}>
                 {messages.map((msg, index) => (
                     <div key={index} className={`message ${msg.sender}`}>
