@@ -32,16 +32,14 @@ body{
 .chat-box::-webkit-scrollbar {
   display: none;
 }
-.message {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 8px;
-  max-width: 80%;
+.message-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
-
-/* Bot messages on the left */
 .bot {
   align-self: flex-start;
+  flex-direction: row;
   background: #ddd;
   color: black;
   max-width: 550px;
@@ -51,19 +49,38 @@ body{
 /* User messages on the right */
 .user {
   align-self: flex-end;
+  flex-direction: row-reverse;
   background: #007bff;
   color: white;
   max-width: 550px;
   margin-left: -200px;
 }
-
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+.message {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  max-width: 80%;
+}
 /* Button container for Start & Contact */
 .button-container {
   margin-top: 10px;
   display: flex;
   gap: 10px;
 }
+.bot .message {
+  background-color: #e0e0e0;
+}
 
+.user .message {
+  background-color: #4caf50;
+  color: white;
+}
 /* Start & Contact buttons */
 .option-button {
   padding: 8px 15px;

@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./app.css";
+import botImage from "./assets/images/images.png";
+import userImage from "./assets/images/Group.png";
 
 function App() {
+    // const botImage = "D:\Capstone\Capstone_Project\frontend\IMG_20221026_182722_159.jpg"; 
+    // const userImage = "D:\Capstone\Capstone_Project\frontend\IMG_20221026_182722_221.jpg";
     const [messages, setMessages] = useState([
         { text: "Welcome! Choose an option:", sender: "bot", type: "text" },
         { text: "Start", sender: "bot", type: "button", action: "Start" },
@@ -79,9 +83,11 @@ function App() {
             <div className="heading">
                 Automated Email Response Generator
             </div>
-            <div className="chat-box" ref={chatBoxRef} style={{ overflowY: "auto", maxHeight: "400px" }}>
+            <div className="chat-box" ref={chatBoxRef} style={{ overflowY: "auto", maxHeight: "500px" }}>
                 {messages.map((msg, index) => (
-                    <div key={index} className={`message ${msg.sender}`}>
+                    <div key={index} className={`message-container ${msg.sender}`}>
+                        <img src={msg.sender === "bot" ? botImage : userImage} alt={`${msg.sender} avatar`} className="avatar" />
+                        <div className={`message ${msg.sender}`}>
                         {msg.type === "button" ? (
                             <button className="option-button" onClick={() => handleOptionClick(msg.action)}>
                                 {msg.text}
@@ -89,6 +95,7 @@ function App() {
                         ) : (
                             msg.text
                         )}
+                    </div>
                     </div>
                 ))}
             </div>
