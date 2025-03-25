@@ -13,8 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Azure OpenAI API Configuration
-const OPENAI_API_URL =
-    "https://ai-aihackthonhub282549186415.openai.azure.com/openai/deployments/gpt-4/chat/completions?api-version=2025-01-01-preview";
+const OPENAI_API_URL = process.env.API_URL;
 const OPENAI_API_KEY = process.env.API_KEY;
 
 // Rate Limiting: Allow max 5 requests per minute
