@@ -45,10 +45,11 @@ import { useState } from "react";
 import axios from "axios";
 
 function App() {
-    const [emailText, setEmailText] = useState("");
+    let [emailText, setEmailText] = useState("");
     const [response, setResponse] = useState("");
-
+    
     const handleSend = async () => {
+      emailText = emailText + " Act as an email response generator and give the sentiment and intent of the mail.";
         try {
             const res = await axios.post("http://localhost:5000/process-email", {
                 emailText,
